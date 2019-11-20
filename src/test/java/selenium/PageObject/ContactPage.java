@@ -2,10 +2,13 @@ package selenium.PageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.rmi.server.ExportException;
+import java.util.List;
+
 public class ContactPage extends BasePage {
-    public WebDriver driver;
     /*
       通讯录列表
      */
@@ -39,4 +42,30 @@ public class ContactPage extends BasePage {
         findElement(By.id("memberSearchInput")).clear();
         return this;
     }
+
+    /*
+     删除当前页全部成员
+    */
+    public ContactPage delectCurrentPage(){
+        visibilityWait(By.cssSelector(".ww_checkbox"));
+        List<WebElement> list = driver.findElements(By.cssSelector(".ww_checkbox"));
+        System.out.println("++++++++++" + list.size());
+        for (int i = 2 ;i< list.size();i++){
+            list.get(i).click();
+            try {
+                Thread.sleep(500);
+            }
+            catch (Exception e){
+                 e.printStackTrace();
+            }
+        }
+        findElement(By.linkText("删除")).click();
+        findElement(By.linkText("确认")).click();
+//        visibilityWait(By.cssSelector(".ww_checkbox"));
+//        findElement(By.cssSelector(".ww_checkbox")).click();
+//        findElement(By.linkText("删除")).click();
+//        findElement(By.linkText("确认")).click();
+        return this;
+    }
+
 }

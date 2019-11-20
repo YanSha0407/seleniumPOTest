@@ -10,13 +10,13 @@ public class TestWework {
     public static void setUp(){
          app = new App();
          app.setUpCookie();
-         String name = "13001277119";
-         app.toContact().delect(name);
+
     }
     @Test
     public  void  add(){
 //         app.toContact().list();
-         String name = "13001277119";
+         String name = "13001277113";
+         app.toContact().delect(name);
          app.toMemberAdd().add(name,name,name);
     }
 
@@ -24,6 +24,14 @@ public class TestWework {
     public void delect(){
         String userID = "13001277110";
         app.toMemberAdd().add(userID,userID,userID).delect(userID);
+    }
+
+    @Test
+        /*
+    删除当前页全部成员
+     */
+    public void delectCurrentPage(){
+         app.toContact().delectCurrentPage();
     }
     @AfterClass
     public static void afterAll() throws InterruptedException {

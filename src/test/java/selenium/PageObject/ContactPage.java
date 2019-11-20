@@ -42,7 +42,6 @@ public class ContactPage extends BasePage {
         findElement(By.id("memberSearchInput")).clear();
         return this;
     }
-
     /*
      删除当前页全部成员
     */
@@ -68,4 +67,71 @@ public class ContactPage extends BasePage {
         return this;
     }
 
+    /*
+    禁用当前用户
+     */
+    public ContactPage forbiddenUser(){
+         String name = "13001277113";
+         findElement(By.id("memberSearchInput")).sendKeys(name);
+         findElement(By.linkText("禁用")).click();
+         findElement(By.linkText("确定")).click();
+         findElement(By.id("memberSearchInput")).clear();
+         return this;
+    }
+
+    /*
+    编辑当前用户
+     */
+    public ContactPage editUser(){
+         String name = "13001277113";
+         String name1 = "13001277118";
+         findElement(By.id("memberSearchInput")).sendKeys(name);
+         findElement(By.linkText("编辑")).click();
+         findElement(By.name("username")).clear();
+         findElement(By.name("mobile")).clear();
+         findElement(By.name("username")).sendKeys(name1);
+         findElement(By.name("mobile")).sendKeys(name1);
+         findElement(By.linkText("保存")).click();
+         findElement(By.id("memberSearchInput")).clear();
+         return this;
+    }
+    /*
+    置顶用户  或取消置顶
+     */
+    public ContactPage alwaysTop(){
+        String name = "13001277118";
+        findElement(By.id("memberSearchInput")).sendKeys(name);
+        try {
+            elementIsExitWait(By.linkText("置顶"));
+            findElement(By.linkText("置顶")).click();
+        }
+        catch (Exception e){
+            findElement(By.linkText("取消置顶")).click();
+        }
+        return this;
+    }
+    /*
+    设置员工所在部门
+     */
+    public ContactPage employeeDepartment(){
+        visibilityWait(By.cssSelector(".ww_checkbox"));
+        String userID = "13001277118";
+        List<WebElement> checkBoxlist = driver.findElements(By.cssSelector(".ww_checkbox"));
+        List<WebElement> userNamelist = driver.findElements(By.className("member_colRight_memberTable_td"));
+        for (int i =0;i < checkBoxlist.size(); i++){
+            WebElement element = checkBoxlist.get(i);
+            System.out.println("+++++++++="+element);
+            String name = userNamelist.get(i).getText();
+            System.out.println("-----------"+name);
+            if (name.equals(userID)){
+               element.click();
+               break;
+           }
+        }
+        findElement(By.linkText("设置所在部门")).click();
+        findElement(By.className("qui_inputText ww_inputText ww_searchInput_text")).sendKeys("Test部门");
+        findElement(By.partialLinkText("Test部门")).click();
+        findElement(By.linkText("确定")).click();
+        return this;
+    }
 }

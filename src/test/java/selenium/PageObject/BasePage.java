@@ -16,6 +16,9 @@ public class BasePage {
            new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(by));
            new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(by));
       }
+      protected void elementIsExitWait( By by){
+           new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(by));
+      }
       public void quit() throws InterruptedException {
            Thread.sleep(5000);
            driver.quit();

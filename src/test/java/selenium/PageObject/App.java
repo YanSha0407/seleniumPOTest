@@ -20,8 +20,8 @@ public class App extends BasePage{
         driver.get(url);
         driver.manage().window().setSize(new Dimension(1406,877));
         driver.findElement(By.className("index_top_operation_loginBtn")).click();
-        driver.manage().addCookie(new Cookie("wwrtx.refid","42775325302762653"));
-        driver.manage().addCookie(new Cookie("wwrtx.sid","7DChPLO4PDZGxu7jcuS4CnqUrE3wnFKy1mY5uYN8hDhZ6KKTL12gCIk1lC5JssqY"));
+        driver.manage().addCookie(new Cookie("wwrtx.refid","42775325302847881"));
+        driver.manage().addCookie(new Cookie("wwrtx.sid","7DChPLO4PDZGxu7jcuS4CmgDEYNxud57Dadn_hseZqK1HDsoV2FdGS1j-EfwiFXP"));
         driver.navigate().refresh();
     }
     /*
@@ -35,7 +35,7 @@ public class App extends BasePage{
        打开添加成员界面
      */
     public ContactPage toMemberAdd(){
-        driver.findElement(By.className("index_service_cnt_item")).click();
+        driver.findElement(By.linkText("添加成员")).click();
         return new ContactPage();
     }
 }

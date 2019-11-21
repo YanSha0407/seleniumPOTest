@@ -1,9 +1,7 @@
 package selenium.PageObject;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -14,6 +12,8 @@ public class App extends BasePage{
     初始化cookie
      */
     public void setUpCookie(){
+        ChromeOptions options = new ChromeOptions();
+        options.setPageLoadStrategy(PageLoadStrategy.NONE);
         driver = new FirefoxDriver();
         String url = "http://work.weixin.qq.com";
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

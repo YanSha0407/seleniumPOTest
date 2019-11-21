@@ -115,7 +115,12 @@ public class ContactPage extends BasePage {
     设置员工所在部门
      */
     public ContactPage employeeDepartment(){
-        visibilityWait(By.linkText("立即邀请"));
+//        visibilityWait(By.linkText("立即邀请"));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         visibilityWait(By.cssSelector(".ww_checkbox"));
         String userID = "13001277113";
         List<WebElement> checkBoxlist = driver.findElements(By.cssSelector(".ww_checkbox"));
@@ -133,7 +138,7 @@ public class ContactPage extends BasePage {
            }
         }
         findElement(By.linkText("设置所在部门")).click();
-        findElement(By.cssSelector(".multiPickerDlg_search #memberSearchInput")).sendKeys("Test部门");
+        findElement(By.cssSelector(".multiPickerDlg_search")).sendKeys("Test部门");
         findElement(By.partialLinkText("Test部门")).click();
         try {
             Thread.sleep(5000);
@@ -143,6 +148,17 @@ public class ContactPage extends BasePage {
         }
 
         findElement(By.linkText("确定")).click();
+        return this;
+    }
+
+    /*
+    通过excel导入员工
+     */
+    public ContactPage importEmployee(String path){
+        findElement(By.linkText("批量导入/导出")).click();
+        findElement(By.linkText("文件导入")).click();
+        findElement(By.id("js_upload_file_input"),0).sendKeys(path);
+        findElement(By.id("submit_csv")).click();
         return this;
     }
 }

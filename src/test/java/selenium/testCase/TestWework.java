@@ -68,6 +68,10 @@ public class TestWework {
     public void employeeDepartment(){
         app.toContact().employeeDepartment();
     }
+    @Test
+    public void importEmployee(){
+        app.toContact().importEmployee("/Users/metis/Desktop/员工信息.xlsx");
+    }
     @AfterClass
     public static void afterAll() throws InterruptedException {
         app.quit();

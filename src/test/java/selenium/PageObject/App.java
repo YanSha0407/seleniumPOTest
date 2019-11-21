@@ -21,7 +21,7 @@ public class App extends BasePage{
         driver.manage().window().setSize(new Dimension(1406,877));
         driver.findElement(By.className("index_top_operation_loginBtn")).click();
         driver.manage().addCookie(new Cookie("wwrtx.refid","42775325302744230"));
-        driver.manage().addCookie(new Cookie("wwrtx.sid","7DChPLO4PDZGxu7jcuS4CrI442iDjyk0PZin_aQ8DUG6TsH3OyiOUVJvUgGeU1Ql"));
+        driver.manage().addCookie(new Cookie("wwrtx.sid","7DChPLO4PDZGxu7jcuS4CriMcQmWMeceTnldIelcBrlOHalnYhqGRGL0kV0A43tO"));
         driver.navigate().refresh();
     }
     /*

@@ -46,6 +46,7 @@ public class ContactPage extends BasePage {
      删除当前页全部成员
     */
     public ContactPage delectCurrentPage(){
+        visibilityWait(By.linkText("立即邀请"));
         visibilityWait(By.cssSelector(".ww_checkbox"));
         List<WebElement> list = driver.findElements(By.cssSelector(".ww_checkbox"));
         System.out.println("++++++++++" + list.size());
@@ -114,23 +115,33 @@ public class ContactPage extends BasePage {
     设置员工所在部门
      */
     public ContactPage employeeDepartment(){
+        visibilityWait(By.linkText("立即邀请"));
         visibilityWait(By.cssSelector(".ww_checkbox"));
-        String userID = "13001277118";
+        String userID = "13001277113";
         List<WebElement> checkBoxlist = driver.findElements(By.cssSelector(".ww_checkbox"));
         List<WebElement> userNamelist = driver.findElements(By.className("member_colRight_memberTable_td"));
         for (int i =0;i < checkBoxlist.size(); i++){
             WebElement element = checkBoxlist.get(i);
-            System.out.println("+++++++++="+element);
             String name = userNamelist.get(i).getText();
-            System.out.println("-----------"+name);
+            System.out.println("name -------"+name);
+            System.out.println("i -------"+i);
+            System.out.println("userNamelist-------"+ userNamelist.size());
+            System.out.println("checkBoxlist-------"+ checkBoxlist.size());
             if (name.equals(userID)){
                element.click();
                break;
            }
         }
         findElement(By.linkText("设置所在部门")).click();
-        findElement(By.className("qui_inputText ww_inputText ww_searchInput_text")).sendKeys("Test部门");
+        findElement(By.cssSelector(".multiPickerDlg_search #memberSearchInput")).sendKeys("Test部门");
         findElement(By.partialLinkText("Test部门")).click();
+        try {
+            Thread.sleep(5000);
+        }
+        catch (Exception e){
+            System.out.println("没找到元素");
+        }
+
         findElement(By.linkText("确定")).click();
         return this;
     }
